@@ -17,17 +17,20 @@ import Header from "./components/Header";
 import AcountInfo from "./components/AcountInfo";
 import VoteDisplay from "./components/VoteDisplay";
 import Admin from "./components/Admin";
+import Footer from "./components/Footer";
 import dotenv from "dotenv";
 dotenv.config();
 
 function App() {
   const config = {
     multicallAddresses: {
-      1337: "0xe3Ec387867C0Dd993612d3bA17c5DF8Fd81D7626"
+      // 1337: "0x46Cbd54ef91AC4e2bA5602a338D795Dd37E808d5"
+      1337: process.env.REACT_APP_SMART_CONTRACT_ADDRESS
     },
     readOnlyChainId: Localhost.chainId,
     readOnlyUrls: {
-      [Localhost.chainId]: "http://127.0.0.1:7545"
+      // [Localhost.chainId]: "http://127.0.0.1:7545"
+      [Localhost.chainId]: process.env.WEB3_PROVIDER_URI
     }
   };
   const { activateBrowserWallet, account, deactivate } = useEthers();
@@ -42,6 +45,7 @@ function App() {
         <AcountInfo />
         <VoteDisplay />
         <Admin />
+        <Footer />
       </div>
     </DAppProvider>
   );

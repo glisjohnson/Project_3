@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useEthers } from "@usedapp/core";
 import { ethers } from "ethers";
 import { abi } from "../compiled/ballot_abi.json";
+import dotenv from "dotenv";
+dotenv.config();
 
 const Admin = () => {
   const { account, library } = useEthers();
@@ -15,8 +17,10 @@ const Admin = () => {
   const [proposalVoteCounts, setProposalVoteCounts] = useState([]);
   const [admin, setAdmin] = useState("");
 
-  const contractAddress = "0xe3Ec387867C0Dd993612d3bA17c5DF8Fd81D7626";
+  // const contractAddress = "0x46Cbd54ef91AC4e2bA5602a338D795Dd37E808d5";
+  const contractAddress = process.env.REACT_APP_SMART_CONTRACT_ADDRESS;
   const contract_abi = abi;
+  console.log(account);
 
   let contract = null;
   if (library) {
@@ -64,6 +68,7 @@ const Admin = () => {
         console.log(contract);
         const admin = await contract.chairperson();
         setAdmin(admin);
+        console.log(admin);
         const proposals = await contract.getProposals();
         setProposals(proposals);
         setLoading2(false);

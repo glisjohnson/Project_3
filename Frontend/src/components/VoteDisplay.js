@@ -10,7 +10,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const VoteDisplay = () => {
-  const contractAddress = "0xe3Ec387867C0Dd993612d3bA17c5DF8Fd81D7626";
+  const contractAddress = process.env.REACT_APP_SMART_CONTRACT_ADDRESS;
+  // const contractAddress = "0x46Cbd54ef91AC4e2bA5602a338D795Dd37E808d5";
   console.log(contractAddress);
 
   const [proposalIndex, setProposalIndex] = useState("Bitcoin");
@@ -20,6 +21,7 @@ const VoteDisplay = () => {
   const [loading2, setLoading2] = useState(false);
   const [error, setError] = useState(null);
   const [error2, setError2] = useState(null);
+  const [admin, setAdmin] = useState("");
 
   const contract_abi = abi;
 
@@ -34,6 +36,9 @@ const VoteDisplay = () => {
         console.log("contract:", contract);
         const proposals = await contract.getProposals();
         setProposals(proposals);
+        const admin = await contract.chairperson();
+        setAdmin(admin);
+        console.log(admin);
         console.log(proposals);
         setLoading(false);
       } catch (error) {
@@ -80,7 +85,7 @@ const VoteDisplay = () => {
 
   return (
     <div className="vote-display">
-      {account ? (
+      {account && account !== admin ? (
         <>
           <h3>Cast your Vote</h3> <br />
           <p>Which proposal do you think we should implement ?</p>
