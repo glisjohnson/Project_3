@@ -1,5 +1,10 @@
 import React from "react";
-import { useEthers, useEtherBalance, Localhost } from "@usedapp/core";
+import {
+  useEthers,
+  useEtherBalance,
+  Localhost,
+  useMulticallAddress
+} from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
 
 const changeBackground = (e) => {
@@ -11,7 +16,7 @@ const resetBackground = (e) => {
 
 const AcountInfo = () => {
   const { activateBrowserWallet, account, deactivate } = useEthers();
-  const localBalance = useEtherBalance(account, { chainId: Localhost.chainId });
+  const localBalance = useEtherBalance(account, { chainId: 1337 });
   console.log(account);
   console.log(Localhost.chainId);
   console.log(localBalance);
@@ -27,7 +32,6 @@ const AcountInfo = () => {
             </>
           )}
           <hr />
-          {/* Display wallet balance */}
         </>
       ) : (
         <h2>

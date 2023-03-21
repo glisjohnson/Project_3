@@ -21,18 +21,6 @@ const Wallet = () => {
   );
 
   return (
-    // <div>
-    //   {!active && (
-    //     <div>
-    //       <button className="btn" onClick={() => activateBrowserWallet()}>
-    //         Connect Wallet
-    //       </button>
-    //     </div>
-    //   )}
-    //   {active && <button onClick={() => deactivate()}>Disconnect</button>}
-    //   <br />
-    // </div>
-
     <div>
       {!account && <ConnectButton />}
       {account && <button onClick={deactivate}>Disconnect</button>}

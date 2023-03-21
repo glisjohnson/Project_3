@@ -6,14 +6,12 @@ import {
 } from "@usedapp/core";
 import { abi } from "../compiled/ballot_abi.json";
 import { ethers, utils } from "ethers";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 const VoteDisplay = () => {
-  // const { account, activateBrowserWallet } = useEthers();
-  // const [signer, setSigner] = useState(undefined);
-  // const [isConnected, setIsConnected] = useState(false);
-
-  const contractAddress = "0x76cbB9289CdAeBa85Cc2bce0C82783ea8c5ca528";
+  const contractAddress = "0xe3Ec387867C0Dd993612d3bA17c5DF8Fd81D7626";
+  console.log(contractAddress);
 
   const [proposalIndex, setProposalIndex] = useState("Bitcoin");
   const { account, library } = useEthers();
@@ -23,7 +21,6 @@ const VoteDisplay = () => {
   const [error, setError] = useState(null);
   const [error2, setError2] = useState(null);
 
-  // const contractAddress = "0x194f514f7FA8eabbF26E13B52C6dF9E011689212";
   const contract_abi = abi;
 
   useEffect(() => {
@@ -52,10 +49,6 @@ const VoteDisplay = () => {
     return <div>Loading proposals...</div>;
   }
 
-  // if (error) {
-  //   return <div>Error loading proposals: {error.message}</div>;
-  // }
-
   async function vote() {
     try {
       setLoading2(true);
@@ -65,9 +58,7 @@ const VoteDisplay = () => {
         library.getSigner()
       );
       const proposalId = proposals.findIndex((p) => p === proposalIndex);
-      // if (proposalId < 0) {
-      //   proposalId = 0; // Assume the selected proposal is the first one in the list
-      // }
+
       console.log(proposalId);
       const tx = await contract.vote(proposalId, { gasLimit: 300000 });
       await tx.wait();
@@ -92,7 +83,7 @@ const VoteDisplay = () => {
       {account ? (
         <>
           <h3>Cast your Vote</h3> <br />
-          <p>which coin do you think is worth investing in?</p>
+          <p>Which proposal do you think we should implement ?</p>
           <select
             name="proposals"
             id="proposals"

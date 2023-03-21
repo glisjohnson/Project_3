@@ -15,7 +15,7 @@ const Admin = () => {
   const [proposalVoteCounts, setProposalVoteCounts] = useState([]);
   const [admin, setAdmin] = useState("");
 
-  const contractAddress = "0x76cbB9289CdAeBa85Cc2bce0C82783ea8c5ca528";
+  const contractAddress = "0xe3Ec387867C0Dd993612d3bA17c5DF8Fd81D7626";
   const contract_abi = abi;
 
   let contract = null;
@@ -41,10 +41,6 @@ const Admin = () => {
   }
 
   async function handleTallyVotes() {
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // const signer = provider.getSigner();
-    // const contract = new ethers.Contract(contractAddress, contractAbi, signer);
-
     const winningProposal = await contract.winningProposal();
     setWinningProposal(winningProposal.toString());
 
