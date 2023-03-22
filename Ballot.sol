@@ -2,21 +2,15 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-/**
- * @title Ballot
- * @dev Implements voting process along with vote delegation
- */
 contract Ballot {
     struct Voter {
-        uint weight; // weight is accumulated by delegation
+        uint weight;
         bool voted; // if true, that person already voted
-        address delegate; // person delegated to
         uint vote; // index of the voted proposal
     }
 
     struct Proposal {
         // If you can limit the length to a certain number of bytes,
-        // always use one of bytes1 to string because they are much cheaper
         string name; // short name (up to 32 bytes)
         uint voteCount; // number of accumulated votes
     }
@@ -31,7 +25,7 @@ contract Ballot {
     mapping(uint => uint) public proposalVoteCounts;
 
     /**
-     * @dev Create a new ballot to choose one of 'proposalNames'.
+
      * @param proposalNames names of proposals
      */
     constructor(string[] memory proposalNames) {
@@ -62,7 +56,7 @@ contract Ballot {
     }
 
     /**
-     * @dev Give your vote (including votes delegated to you) to proposal 'proposals[proposal].name'.
+     *
      * @param proposal index of proposal in the proposals array
      */
     function vote(uint proposal) public {
