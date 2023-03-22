@@ -6,7 +6,12 @@ const Footer = () => {
   return (
     <div>
       <footer className="App-footer">
-        <div>By </div>
+        <ol className="Name-list">
+          <li>By: Danny</li>
+          <li>Ethan</li>
+          <li>Eyob</li>
+          <li>Robel</li>
+        </ol>
       </footer>
     </div>
   );

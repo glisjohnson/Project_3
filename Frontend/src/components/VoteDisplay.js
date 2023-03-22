@@ -88,7 +88,7 @@ const VoteDisplay = () => {
       {account && account !== admin ? (
         <>
           <h3>Cast your Vote</h3> <br />
-          <p>Which proposal do you think we should implement ?</p>
+          <h4>Which proposal do you think we should implement ?</h4>
           <select
             name="proposals"
             id="proposals"
@@ -105,8 +105,6 @@ const VoteDisplay = () => {
           <button onClick={() => vote()} className="btn">
             Vote
           </button>
-          {loading2 && <p>Loading ...</p>}
-          {error2 && <p>{error2}</p>}
         </>
       ) : (
         ""

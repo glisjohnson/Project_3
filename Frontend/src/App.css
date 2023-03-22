@@ -53,6 +53,26 @@
   background: antiquewhite;
 }
 
+.btn-sm {
+  border-radius: 4px;
+  padding: 4px;
+  width: 120px;
+  height: 25px;
+  border: 1px solid black;
+  background: antiquewhite;
+
+}
+
+input {
+  border: 6px;
+  margin: 6px;
+  padding: 4px;
+  width: 250px;
+  height: 25px;
+  border: 1px solid black;
+}
+
+
 .bal {
   border: 1px solid #cccccc;
   padding: 1% 5%;
@@ -70,4 +90,24 @@
     display: grid;
     justify-content: center;
     
+}
+
+.App-footer {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  align-content: right; 
+  align-items: right;
+  justify-content: right;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Name-list {
+  list-style: none;
+  margin: 40px;
+}
+
+.vote-list {
+  list-style: none;
 }

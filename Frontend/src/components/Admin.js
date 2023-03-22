@@ -17,7 +17,6 @@ const Admin = () => {
   const [proposalVoteCounts, setProposalVoteCounts] = useState([]);
   const [admin, setAdmin] = useState("");
 
-  // const contractAddress = "0x46Cbd54ef91AC4e2bA5602a338D795Dd37E808d5";
   const contractAddress = process.env.REACT_APP_SMART_CONTRACT_ADDRESS;
   const contract_abi = abi;
   console.log(account);
@@ -87,25 +86,30 @@ const Admin = () => {
         <>
           <h2>Give Right To Vote</h2>
           <input
+            className="input"
             type="text"
             value={voterAddress}
             onChange={(e) => setVoterAddress(e.target.value)}
             placeholder="Enter the voter's address"
           />
-          <button onClick={handleGiveRightToVote}>Give Right To Vote</button>
+          <button className="btn-sm" onClick={handleGiveRightToVote}>
+            Give Right To Vote
+          </button>
           {loading && <div>Loading...</div>}
           {error && <div>Error: {error.message}</div>}
 
           <div>
             <h2>Tally Votes</h2>
-            <button onClick={handleTallyVotes}>Tally Votes</button>
+            <button className="btn" onClick={handleTallyVotes}>
+              Tally Votes
+            </button>
             {winningProposal && (
               <p>The winning vote is: {proposals[winningProposal]}</p>
             )}
             {proposalVoteCounts.length > 0 && (
               <ul>
                 {proposalVoteCounts.map((count, index) => (
-                  <li key={index}>
+                  <li className="vote-list" key={index}>
                     {proposals[index]}: {count} votes
                   </li>
                 ))}
